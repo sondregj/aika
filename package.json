@@ -1,27 +1,28 @@
 {
-  "name": "aika",
-  "version": "0.1.0",
-  "description": "Tiny HTTP library",
-  "main": "index.js",
-  "scripts": {
-    "test": "ava"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sondregj/aika.git"
-  },
-  "keywords": [
-    "http",
-    "https"
-  ],
-  "author": "Sondre Gjellestad",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sondregj/aika/issues"
-  },
-  "homepage": "https://github.com/sondregj/aika#readme",
-  "devDependencies": {
-    "ava": "^1.3.1",
-    "eslint": "^5.15.1"
-  }
+	"name": "aika",
+	"version": "0.1.0",
+	"description": "Tiny HTTP library",
+	"main": "index.js",
+	"scripts": {
+		"lint": "eslint .",
+		"test": "ava"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sondregj/aika.git"
+	},
+	"keywords": [
+		"http",
+		"https"
+	],
+	"author": "Sondre Gjellestad <sondre.gjellestad@hotmail.com> (https://sondregjellestad.space)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/sondregj/aika/issues"
+	},
+	"homepage": "https://github.com/sondregj/aika#readme",
+	"devDependencies": {
+		"ava": "^1.3.1",
+		"eslint": "^5.15.1"
+	}
 }
