@@ -1,3 +1,3 @@
 const test = require('ava')
 
-test.todo('')
+test.todo('GET Request')
