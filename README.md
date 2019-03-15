@@ -33,10 +33,6 @@
   </a>
 </p>
 
-# Aika
-
-> Another HTTP library for Node.js
-
 *This library is not feature complete yet.*
 
 Everything is asynchronous.
