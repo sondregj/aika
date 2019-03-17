@@ -5,14 +5,14 @@ const querystr = require('querystring')
 const HTTPResponse = require('./helpers/HTTPResponse')
 
 class Aika {
-	constructor(config = {useHTTPS: true}) {
-		const {host, useHTTPS} = config
+	constructor(config = {host: null, useHTTP: false}) {
+		const {host, useHTTP} = config
 
 		this.hostname = host
-		this.useHTTPS = useHTTPS
+		this.useHTTP = useHTTP
 
 		// TODO Middleware
-		//this.middleware = []
+		this.middlewares = []
 	}
 
 	/* General verbs */
@@ -51,10 +51,10 @@ class Aika {
 			headers: {}
 		}
 
-		// TODO Send request through middleware functions
-
-		// Run Header Builder middleware
-		this.headerBuilder.middleware(request, () => {})
+		// Send request through middleware functions
+		for (let middleware of this.middlewares) {
+			middleware.middleware(request)
+		}
 
 		// Send to HTTP Handler
 		return this.http(request)
@@ -65,7 +65,7 @@ class Aika {
 
 	async http(request) {
 		return await new Promise((resolve, reject) => {
-			const req = (this.useHTTPS ? HTTPS : HTTP).request(request, res => {
+			const req = (this.useHTTP ? HTTP : HTTPS).request(request, res => {
 				const response = new HTTPResponse()
 				
 				let body = []
@@ -88,12 +88,8 @@ class Aika {
 		})
 	}
 
-	/* Functions */
-
-	setHeaderBuilder(headerBuilder) {this.headerBuilder = headerBuilder}
-
 	// TODO
-	use(middleware) {; return this}
+	use(middleware) {this.middlewares.push(middleware); return this}
 
 	host(name) {this.hostname = name; return this}
 }
