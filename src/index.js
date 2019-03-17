@@ -45,7 +45,7 @@ class Aika {
 		const request = {
 			host: this.hostname,
 			method,
-			path: `${path}?${querystr.stringify(query)}`,
+			path: `${path}${query ? '?' + querystr.stringify(query) : ''}`,
 			query,
 			body,
 			headers: {}
