@@ -1,7 +1,7 @@
 {
 	"name": "aika",
-	"version": "0.1.0",
-	"description": "Tiny HTTP library",
+	"version": "0.1.1",
+	"description": "Tiny HTTP library with middleware support",
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint .",
@@ -23,6 +23,6 @@
 	"homepage": "https://github.com/sondregj/aika#readme",
 	"devDependencies": {
 		"ava": "^1.3.1",
-		"eslint": "^5.15.1"
+		"eslint": "^5.15.2"
 	}
 }
