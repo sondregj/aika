@@ -41,7 +41,8 @@ Everything is asynchronous.
 
 - [x] Basic requests
 - [x] Bodies and querystrings
-- [ ] Header Builder
+- [x] Header Builder
+- [x] General middleware
 - [ ] Tests
 - [ ] Documentation
 
