@@ -17,12 +17,10 @@ class HeaderBuilder {
 		return result
 	}
 
-	middleware(request, next) {
+	middleware(request) {
 		const headers = this.headers(request)
 
 		request.headers = Object.assign(request.headers, headers)
-		
-		next()
 	}
 }
 
