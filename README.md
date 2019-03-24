@@ -71,6 +71,10 @@ aika.host('cat-fact.herokuapp.com')
     .catch(err => console.log(err))
 ```
 
+## Middleware
+
+A middleware is any object that has a `middleware` function. The function should take a request object as its only parameter and return it after doing it's thing.
+
 ## Development
 
 First, clone the repo, and do `npm install`.
