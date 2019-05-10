@@ -1,6 +1,6 @@
 {
 	"name": "aika",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"description": "Tiny HTTP library with middleware support",
 	"main": "index.js",
 	"scripts": {
