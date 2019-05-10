@@ -11,13 +11,12 @@ class Aika {
 		this.hostname = host
 		this.useHTTP = useHTTP
 
-		// TODO Middleware
 		this.middlewares = []
 	}
 
 	/* General verbs */
 
-	async get(path, query) {return this.middleware('GET', path, query)}
+	async get(path, query) {return this.middleware('GET', path, query).catch(err => {throw err})}
 
 	async post(path, query, body) {return this.middleware('POST', path, query, body).catch(err => {throw err})}
 
@@ -30,13 +29,13 @@ class Aika {
 
 	/* Misc verbs */
 
-	async head(path) {return this.httpFunc('HEAD', path)}
+	async head(path, query) {return this.middleware('HEAD', path, query).catch(err => {throw err})}
 
-	async trace(path) {return this.httpFunc('HEAD', path)}
+	async trace(path, query) {return this.middleware('HEAD', path, query).catch(err => {throw err})}
 
-	async connect(path) {return this.httpFunc('HEAD', path)}
+	async connect(path, query) {return this.middleware('HEAD', path, query).catch(err => {throw err})}
 
-	async options(path) {return this.httpFunc('HEAD', path)}
+	async options(path, query) {return this.middleware('HEAD', path, query).catch(err => {throw err})}
 
 
 	/* Middleware */
@@ -61,10 +60,10 @@ class Aika {
 	}
 
 
-	/* HTTP Handlers */
+	/* HTTP Handler */
 
-	async http(request) {
-		return await new Promise((resolve, reject) => {
+	http(request) {
+		return new Promise((resolve, reject) => {
 			const req = (this.useHTTP ? HTTP : HTTPS).request(request, res => {
 				const response = new HTTPResponse()
 				
@@ -83,12 +82,15 @@ class Aika {
 				return res
 			})
 
+			if (request.body) {
+				req.write(request.body)
+			}
+
 			req.on('error', (err) => {reject(err)})
 			req.end()
 		})
 	}
 
-	// TODO
 	use(middleware) {this.middlewares.push(middleware); return this}
 
 	host(name) {this.hostname = name; return this}
