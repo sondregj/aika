@@ -11,7 +11,6 @@ class Aika {
 		this.hostname = host
 		this.useHTTP = useHTTP
 
-		// TODO Middleware
 		this.middlewares = []
 	}
 
@@ -83,12 +82,15 @@ class Aika {
 				return res
 			})
 
+			if (request.body) {
+				req.write(request.body)
+			}
+
 			req.on('error', (err) => {reject(err)})
 			req.end()
 		})
 	}
 
-	// TODO
 	use(middleware) {this.middlewares.push(middleware); return this}
 
 	host(name) {this.hostname = name; return this}
