@@ -13,7 +13,7 @@ export const HeaderBuilder = ({ constants, helpers, headerFunctions }: HeaderBui
     const context: HBContext = { constants, helpers }
 
     return {
-        middleware: (request: IHTTPRequest): IHTTPRequest => ({
+        apply: (request: IRequest): IRequest => ({
             ...request,
             headers: {
                 ...request.headers,
