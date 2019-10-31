@@ -1,5 +1,5 @@
-import { HTTPRequest } from '../helpers'
+import { IHTTPRequest } from '../helpers/types'
 
 export interface AikaMiddleware {
-    middleware: (request: HTTPRequest) => HTTPRequest
+    middleware: (request: IHTTPRequest) => IHTTPRequest
 }
