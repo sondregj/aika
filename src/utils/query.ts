@@ -1,4 +1,4 @@
-import { Queries } from './types'
+import { Queries } from '../types'
 
 export const parseQuerystring = (querystring: string): Queries => {
     const splitUrl = querystring.split('?')
