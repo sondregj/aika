@@ -1,7 +1,8 @@
 import { HTTPVerb } from '.'
 
-export type Headers = Array<{ key: string; value: string }>
-export type Body = JSON | string | undefined
+export interface Headers {
+    [key: string]: string
+}
 
 interface JSONObject {
     [key: string]: string | number | boolean | JSONObject | JSONArray | null
@@ -11,18 +12,25 @@ type JSONArray = JSONObject[]
 
 export type JSON = JSONObject | JSONArray
 
-export interface IRequest {
-    host: string
-    path: string
+export interface Request {
     method: HTTPVerb
 
+    host: string
+    path: string
+
     headers: Headers
-    body: Body
+    body?: JSON | string
 }
 
-export interface IResponse {
-    headers: Headers
+export interface Response {
     status: number
-    body?: Body
+
+    host: string
+    path: string
+
+    headers: Headers
+    body?: string
+
     json?: JSON
+    text?: string
 }

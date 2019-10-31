@@ -1,5 +1,5 @@
-import { IRequest } from '../types/data'
+import { Request } from '../types/data'
 
 export interface AikaMiddleware {
-    apply: (request: IRequest) => IRequest
+    apply: (request: Request) => Request
 }

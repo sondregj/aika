@@ -1,4 +1,4 @@
-import { Response } from '../data'
+import { Response } from './data'
 
 export type HTTPVerb = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'TRACE' | 'CONNECT' | 'HEAD' | 'OPTIONS'
 
@@ -9,7 +9,7 @@ export interface Query {
 
 export type Queries = Query[]
 
-export type HTTPAction = (path: string, queries: Queries, body: string) => Promise<Response>
+export type HTTPAction = (path: string, queries?: Queries, body?: string) => Promise<Response>
 
 export { AikaMiddleware } from './middleware'
-export { IRequest, IResponse } from './data'
+export { Request, Response, Headers, JSON } from './data'
