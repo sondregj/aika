@@ -1,5 +1,5 @@
 import { AikaMiddleware } from '../../types/middleware'
-import { IHTTPRequest } from '../../types/helpers'
+import { IRequest } from '../../types/helpers'
 
 import { HBContext, HeaderFunctions, Headers, HelperFunction } from './types'
 
@@ -23,7 +23,7 @@ export const HeaderBuilder = ({ constants, helpers, headerFunctions }: HeaderBui
     }
 }
 
-type headers = (request: IHTTPRequest, headerFunctions: HeaderFunctions, context: HBContext) => Headers
+type headers = (request: IRequest, headerFunctions: HeaderFunctions, context: HBContext) => Headers
 
 const headers: headers = (request, headerFunctions, context) =>
     Object.keys(headerFunctions)

@@ -1,4 +1,4 @@
-import { AikaMiddleware, IHTTPRequest } from '../types'
+import { AikaMiddleware, IRequest } from '../types'
 
-export const applyMiddleware = (request: IHTTPRequest, middlewares: AikaMiddleware[]): IHTTPRequest =>
-    middlewares.reduce<IHTTPRequest>((req, middleware) => middleware.apply(req), request)
+export const applyMiddleware = (request: IRequest, middlewares: AikaMiddleware[]): IRequest =>
+    middlewares.reduce<IRequest>((req, middleware) => middleware.apply(req), request)

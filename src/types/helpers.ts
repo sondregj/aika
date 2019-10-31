@@ -11,14 +11,16 @@ type JSONArray = JSONObject[]
 
 export type JSON = JSONObject | JSONArray
 
-export interface IHTTPRequest {
+export interface IRequest {
+    host: string
+    path: string
     method: HTTPVerb
 
     headers: Headers
     body: Body
 }
 
-export interface IHTTPResponse {
+export interface IResponse {
     headers: Headers
     status: number
     body?: Body
