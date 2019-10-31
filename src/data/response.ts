@@ -1,49 +1,42 @@
-import { Headers, IResponse, JSON } from '../types/data'
+import { Response as FetchResponse } from 'cross-fetch'
+
+import { Headers, Response, JSON } from '../types'
 
 interface ResponseOptions {
-    headers: object
-    body: string
     status: number
+
+    host: string
+    path: string
+
+    headers: Headers
+    body?: string
 }
 
-export class Response implements IResponse {
-    public static fromFetch(response: Response): Response {
-        return new Response({ headers: response.headers, body: response.text(), status: response.status })
-    }
+export const makeFromFetch = () => {}
 
-    public readonly body?: string
+export const buildResponse = (options: ResponseOptions): Response => {
+    return {
+        status: 200,
 
-    private readonly statusCode: number
-    private responseHeaders: any
+        host: '',
+        path: '',
 
-    constructor({ headers, body, status }: ResponseOptions) {
-        this.responseHeaders = headers
-        this.body = body
-        this.statusCode = status
-    }
+        headers: {},
 
-    // Get data
-    public get status(): number {
-        return this.statusCode
-    }
+        get json(): JSON | undefined {
+            if (!this.body) {
+                return undefined
+            }
 
-    public get headers(): Headers {
-        return this.responseHeaders
-    }
+            try {
+                return JSON.parse(this.body)
+            } catch (error) {
+                throw new TypeError("Can't parse body as JSON")
+            }
+        },
 
-    public get json(): JSON | undefined {
-        if (!this.body) {
-            return undefined
-        }
-
-        try {
-            return JSON.parse(this.body)
-        } catch (error) {
-            throw new TypeError("Can't parse body as JSON")
-        }
-    }
-
-    public get text(): string | undefined {
-        return this.body
+        get text(): string | undefined {
+            return this.body
+        },
     }
 }

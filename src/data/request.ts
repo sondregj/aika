@@ -1,26 +1,29 @@
-import { Headers, IRequest, JSON } from '../types/data'
-import { HTTPVerb } from '../types'
+import { Headers, Request, JSON, HTTPVerb, Queries } from '../types'
+
+import { stringifyQuerystring } from '../utils'
 
 interface RequestOptions {
-    body: JSON | string
+    method: HTTPVerb
+
+    host: string
+    path?: string
+    queries?: Queries
+
+    headers?: Headers
+    body?: JSON | string
 }
 
-export class Request implements IRequest {
-    public host: string
-    public path: string
-    public method: HTTPVerb
+export const buildRequest = (options: RequestOptions): Request => {
+    const { method, host, path, queries, headers, body } = options
 
-    public body: string
+    const pathWithQuery = `${path}${queries ? '?' + stringifyQuerystring(queries) : ''}`
+    const bodyString = body ? (typeof body === 'object' ? JSON.stringify(body) : body) : undefined
 
-    constructor({ body }: RequestOptions) {
-        this.body = body
-    }
-
-    public get json(): JSON {
-        return {}
-    }
-
-    public get headers(): Headers {
-        return []
+    return {
+        host,
+        method,
+        path: pathWithQuery,
+        body: bodyString,
+        headers: headers || {},
     }
 }
