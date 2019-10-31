@@ -1,7 +1,6 @@
-import { AikaMiddleware } from '../../types/middleware'
-import { IRequest } from '../../types/data'
+import { AikaMiddleware, Request, Headers } from '../../types'
 
-import { HBContext, HeaderFunctions, Headers, HelperFunction } from './types'
+import { HBContext, HeaderFunctions, HelperFunction } from './types'
 
 interface HeaderBuilderConfig {
     constants: { [key: string]: any }
@@ -13,7 +12,7 @@ export const HeaderBuilder = ({ constants, helpers, headerFunctions }: HeaderBui
     const context: HBContext = { constants, helpers }
 
     return {
-        apply: (request: IRequest): IRequest => ({
+        apply: (request: Request): Request => ({
             ...request,
             headers: {
                 ...request.headers,
@@ -23,9 +22,7 @@ export const HeaderBuilder = ({ constants, helpers, headerFunctions }: HeaderBui
     }
 }
 
-type headers = (request: IRequest, headerFunctions: HeaderFunctions, context: HBContext) => Headers
-
-const headers: headers = (request, headerFunctions, context) =>
+const headers = (request: Request, headerFunctions: HeaderFunctions, context: HBContext): Headers =>
     Object.keys(headerFunctions)
         .map(key => ({ key, value: headerFunctions[key](context, request) }))
         .reduce((final, { key, value }) => (value ? { ...final, [key]: value } : final), {})

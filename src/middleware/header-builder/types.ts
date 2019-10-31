@@ -1,16 +1,13 @@
-import { IRequest } from '../../types'
-
-export interface HBContext {
-    constants: { [key: string]: any }
-    helpers: { [key: string]: HelperFunction }
-}
+import { Request } from '../../types'
 
 export type HelperFunction = (...args: any[]) => any
-export type HeaderFunction = (c: HBContext, r: IRequest) => string | void
+export type HeaderFunction = (c: HBContext, r: Request) => string | void
+
 export interface HeaderFunctions {
     [key: string]: HeaderFunction
 }
 
-export interface Headers {
-    [key: string]: string
+export interface HBContext {
+    constants: { [key: string]: any }
+    helpers: { [key: string]: HelperFunction }
 }
