@@ -1,5 +1,5 @@
 import { AikaMiddleware } from '../../types/middleware'
-import { IRequest } from '../../types/helpers'
+import { IRequest } from '../../types/data'
 
 import { HBContext, HeaderFunctions, Headers, HelperFunction } from './types'
 
