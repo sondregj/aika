@@ -1,6 +1,8 @@
 {
 	"rules": {
-		"interface-name": false
+		"interface-name": false,
+		"ordered-imports": false,
+		"object-literal-sort-keys": false
 	},
 	"extends": [
 		"tslint:recommended",
