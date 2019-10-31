@@ -1,3 +1,4 @@
-export { AikaMiddleware } from './types'
+import { AikaMiddleware, IHTTPRequest } from '../types'
 
-export { HeaderBuilder } from './header-builder'
+export const applyMiddleware = (request: IHTTPRequest, middlewares: AikaMiddleware[]): IHTTPRequest =>
+    middlewares.reduce<IHTTPRequest>((req, middleware) => middleware.apply(req), request)
