@@ -1,4 +1,4 @@
-import { HTTPVerb } from '.'
+import { HTTPVerb, Query } from '.'
 
 export interface Headers {
     [key: string]: string
@@ -17,6 +17,7 @@ export interface Request {
 
     host: string
     path: string
+    query: Query
 
     headers: Headers
     body?: JSON | string

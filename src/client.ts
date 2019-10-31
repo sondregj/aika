@@ -1,4 +1,4 @@
-import { HTTPVerb, HTTPAction, Queries, AikaMiddleware, JSON } from './types'
+import { HTTPVerb, HTTPAction, Query, AikaMiddleware, JSON } from './types'
 
 import { buildRequest } from './data'
 import { applyMiddleware } from './middleware'
@@ -21,31 +21,31 @@ export class Aika {
         this.useHTTP = useHTTP
     }
 
-    public get: HTTPAction = async (path, queries) =>
+    public get: HTTPAction = async (path, query) =>
         send(
             this.compose(
                 'GET',
                 path,
-                queries,
+                query,
             ),
         )
 
-    public post: HTTPAction = async (path, queries, body) =>
+    public post: HTTPAction = async (path, query, body) =>
         send(
             this.compose(
                 'POST',
                 path,
-                queries,
+                query,
                 body,
             ),
         )
 
-    public put: HTTPAction = async (path, queries, body) =>
+    public put: HTTPAction = async (path, query, body) =>
         send(
             this.compose(
                 'PUT',
                 path,
-                queries,
+                query,
                 body,
             ),
         )
@@ -87,21 +87,21 @@ export class Aika {
             ),
         )
 
-    public connect: HTTPAction = async (path, queries) =>
+    public connect: HTTPAction = async (path, query) =>
         send(
             this.compose(
                 'CONNECT',
                 path,
-                queries,
+                query,
             ),
         )
 
-    public options: HTTPAction = async (path, queries) =>
+    public options: HTTPAction = async (path, query) =>
         send(
             this.compose(
                 'OPTIONS',
                 path,
-                queries,
+                query,
             ),
         )
 
@@ -121,8 +121,8 @@ export class Aika {
         return this
     }
 
-    private compose = (method: HTTPVerb, path?: string, queries?: Queries, body?: JSON | string) => {
-        const request = buildRequest({ host: this.hostname, method, path, queries, body })
+    private compose = (method: HTTPVerb, path?: string, query?: Query, body?: JSON | string) => {
+        const request = buildRequest({ host: this.hostname, method, path, query, body })
 
         return applyMiddleware(request, this.middlewares)
     }

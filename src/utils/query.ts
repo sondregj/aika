@@ -1,13 +1,15 @@
-import { Queries } from '../types'
+import { Query } from '../types'
 
-export const parseQuerystring = (querystring: string): Queries => {
+export const parseQuerystring = (querystring: string): Query => {
     const splitUrl = querystring.split('?')
 
     return splitUrl[splitUrl.length - 1]
         .split('&')
         .map(pair => pair.split(''))
-        .map(([key, value]) => ({ key, value }))
+        .reduce((query, [key, value]) => ({ ...query, [key]: value }), {})
 }
 
-export const stringifyQuerystring = (queries: Queries): string =>
-    queries.map(({ key, value }) => `${key}=${value}`).reduce((queryString, current) => `${queryString}&${current}`, '')
+export const stringifyQuerystring = (query: Query): string =>
+    Object.keys(query)
+        .map(key => `${key}=${query[key]}`)
+        .reduce((queryString, current) => `${queryString}&${current}`, '')
