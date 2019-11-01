@@ -1,6 +1,7 @@
 import { Headers, Request, JSON, HTTPVerb, Query } from '../types'
 
 import { stringifyQuerystring } from '../utils'
+import { jsxOpeningElement } from '@babel/types'
 
 interface RequestOptions {
     method: HTTPVerb
@@ -21,7 +22,7 @@ export const buildRequest = (options: RequestOptions): Request => {
         method,
         path: path || '',
         query: query || {},
-        body,
+        body: typeof body === 'object' ? JSON.stringify(body) : body,
         headers: headers || {},
     }
 }
