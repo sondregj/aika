@@ -22,7 +22,7 @@ export const HeaderBuilder = ({ constants, helpers, headerFunctions }: HeaderBui
     }
 }
 
-const headers = (request: Request, headerFunctions: HeaderFunctions, context: HBContext): Headers =>
+export const headers = (request: Request, headerFunctions: HeaderFunctions, context: HBContext): Headers =>
     Object.keys(headerFunctions)
         .map(key => ({ key, value: headerFunctions[key](context, request) }))
-        .reduce((final, { key, value }) => (value ? { ...final, [key]: value } : final), {})
+        .reduce((final, { key, value }) => (value ? { ...final, [key]: value } : final), request.headers)
