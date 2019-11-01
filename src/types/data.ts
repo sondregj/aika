@@ -12,7 +12,7 @@ type JSONArray = JSONObject[]
 
 export type JSON = JSONObject | JSONArray
 
-export interface Request {
+export interface Request<T = JSON> {
     method: HTTPVerb
 
     host: string
@@ -20,10 +20,10 @@ export interface Request {
     query: Query
 
     headers: Headers
-    body?: JSON | string
+    body?: T | string
 }
 
-export interface Response {
+export interface Response<T = JSON> {
     status: number
 
     host: string
@@ -32,6 +32,6 @@ export interface Response {
     headers: Headers
     body?: string
 
-    json?: JSON
+    json?: T
     text?: string
 }
