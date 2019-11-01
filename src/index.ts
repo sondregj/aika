@@ -1,5 +1,5 @@
-export { Aika as default } from './client'
+export { Aika } from './client'
 
-export { AikaMiddleware } from './types'
+export { Middleware } from './types'
 
 export { HeaderBuilder } from './middleware'

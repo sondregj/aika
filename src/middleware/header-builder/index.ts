@@ -1,4 +1,4 @@
-import { AikaMiddleware, Request, Headers } from '../../types'
+import { Middleware, Request, Headers } from '../../types'
 
 import { HBContext, HeaderFunctions, HelperFunction } from './types'
 
@@ -8,7 +8,7 @@ interface HeaderBuilderConfig {
     headerFunctions: HeaderFunctions
 }
 
-export const HeaderBuilder = ({ constants, helpers, headerFunctions }: HeaderBuilderConfig): AikaMiddleware => {
+export const HeaderBuilder = ({ constants, helpers, headerFunctions }: HeaderBuilderConfig): Middleware => {
     const context: HBContext = { constants, helpers }
 
     return {

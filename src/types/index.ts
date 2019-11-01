@@ -8,5 +8,5 @@ export interface Query {
 
 export type HTTPAction = (path: string, query?: Query, body?: string) => Promise<Response>
 
-export { AikaMiddleware } from './middleware'
+export { Middleware } from './middleware'
 export { Request, Response, Headers, JSON } from './data'

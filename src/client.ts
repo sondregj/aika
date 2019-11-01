@@ -1,4 +1,4 @@
-import { HTTPVerb, HTTPAction, Query, AikaMiddleware, JSON } from './types'
+import { HTTPVerb, HTTPAction, Query, Middleware, JSON } from './types'
 
 import { buildRequest } from './data'
 import { applyMiddleware } from './middleware'
@@ -12,7 +12,7 @@ export class Aika {
     private hostname: string
     private useHTTP?: boolean
 
-    private middlewares: AikaMiddleware[] = []
+    private middlewares: Middleware[] = []
 
     constructor(host: string, config: AikaConfig = {}) {
         const { useHTTP = false } = config
@@ -115,7 +115,7 @@ export class Aika {
         return this
     }
 
-    public use = (middleware: AikaMiddleware): Aika => {
+    public use = (middleware: Middleware): Aika => {
         this.middlewares.push(middleware)
 
         return this
