@@ -6,7 +6,8 @@ export interface Query {
     [key: string]: string
 }
 
-export type HTTPAction = (path: string, query?: Query, body?: string) => Promise<Response>
+export type HTTPAction = (path: string, query?: Query) => Promise<Response>
+export type HTTPActionBody = (path: string, body?: string, query?: Query) => Promise<Response>
 
 export { Middleware } from './middleware'
 export { Request, Response, Headers, JSON } from './data'
